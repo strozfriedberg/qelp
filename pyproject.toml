@@ -8,7 +8,7 @@ dependencies = [
     "colorama"
 ]
 readme = "README.md"
-requires-python = ">= 3.8"
+requires-python = ">= 3.12"
 
 [dependency-groups]
 dev = [
@@ -37,5 +37,6 @@ build-onefile = 'scripts.build:main_onefile'
 test-exe = 'scripts.test_executable:main'
 validate-build = 'scripts.validate_build:main'
 clean-build = 'scripts.clean_build:main'
+
 
 
