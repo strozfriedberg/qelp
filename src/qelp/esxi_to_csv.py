@@ -176,18 +176,36 @@ LOG_IDENTIFIERS = [
                             DescriptionHandler(
                                 True,
                                 re.compile(
-                                    r"(user [a-zA-Z0-9].* login.*|Accepted keyboard-interactive.*|Connection from.*|Session opened for.*|Session closed for.*)",
-                                    re.IGNORECASE,
-                                ),
-                            ),
-                            DescriptionHandler(
-                                False,
-                                re.compile(
-                                    r"(authentication failure;.*|Connection closed by.*|error \[login.*)",
+                                    r"(user [a-zA-Z0-9].* login.*|Accepted keyboard-interactive.*|Connection from.*|Session opened for.*)",
                                     re.IGNORECASE,
                                 ),
                             ),
                         ]
+                    ),
+
+                    AccessType(
+                        "Logoff",
+                        [
+                            DescriptionHandler(
+                                True,
+                                re.compile(
+                                    r"(Session closed for.*|Connection closed by.*|Disconnected from.*)",
+                                re.IGNORECASE,
+                                ),
+                            ),
+                        ],
+                    ),
+                    AccessType(
+                        "Failed-Logon",
+                        [
+                            DescriptionHandler(
+                                True,
+                                re.compile(
+                                    r"(authentication failure;.*|error \[login.*)",
+                                re.IGNORECASE,
+                                ),
+                            ),
+                        ],
                     ),
                     AccessType(
                         "User_activity",
@@ -195,7 +213,7 @@ LOG_IDENTIFIERS = [
                             DescriptionHandler(
                                 True,
                                 re.compile(
-                                    r"(password changed.*)",
+                                    r"(password changed.*|User.* running command\s.*)",
                                     re.IGNORECASE,
                                 ),
                             ),
